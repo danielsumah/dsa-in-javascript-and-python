@@ -1,0 +1,48 @@
+Big O => O(n):
+    - theoretical definition of the complexity of an algorithm as a function of the size
+    - called upper bound of the algorithm i.e how the alogirthm performs in the worst case scenario
+
+    big(0) Time complexity is usually expressed as the log of a number..
+
+    the log of X to base b is a MEANS THAT the number of times you divide X by b to get "1" is a 
+
+
+TIME COMPLEXITY
+_______________
+O(1) 
+    => constant time 
+    => it always take x-amount of time (and x doesnt change) irrespective of the size of the input
+
+
+O(n) 
+    => linear time 
+    => if the amount of input is n, it will take n amount of time to find the target
+
+
+O(log(n))
+    => logarithmic time 
+    => 
+
+O(n ^ 2)
+    => Quadratic time
+    => For an input of n size, it'll take n * n = n ^ 2 number of operations
+
+O(n ^ 3)
+    => Cubic time
+    => For an input of n size, it'll take n * n * n = n ^ 3 number of operations
+
+O(n*log(n))
+    => quasalinear time 
+    => 
+
+O(n*k)
+    => polynomial run time 
+    => 
+
+O(x^n)
+    => exponential run time 
+    => 
+
+O(n!)
+    => factorial/combinatorial run time 
+    => 

@@ -1,0 +1,4 @@
+linear search has a Big 0 of O(n) i.e linear time 
+    i.e if the size of the input is n,it will take n trials to find the target
+
+ANY ALGORTHM that sequetially reads the input will have linear time

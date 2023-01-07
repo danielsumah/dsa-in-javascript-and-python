@@ -1,0 +1,16 @@
+input => 
+        a SORTED list of values.. for binary search, input MUST BE SORTED
+output => 
+        the position in the target value in the list || an indicator that the target value does not exist in the list
+
+
+Efficiency
+__________
+- Time complexity (performance in the worst case scenario)
+
+binary search has a bigO => O (log(n))
+
+A worst cast scenario for binary search is:
+        - the the get is at the beginning or end of the list
+                in a case like this, every time the size of the list n doubles, the number of trials only increases by 1
+                 therefore the bigO of binary is O(log(n))

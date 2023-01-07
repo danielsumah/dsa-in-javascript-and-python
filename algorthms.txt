@@ -1,0 +1,5 @@
+Definition of algorithms
+    - steps in the algorithm must be in a specific order
+    - the steps in the algorithm needs to be distinct
+    - the algorithm must product a result
+    - the algorithm should complete in a finite amount of time
