@@ -2,6 +2,13 @@ var MySet = /** @class */ (function () {
     function MySet() {
         this.collection = [];
     }
+    MySet.prototype.subset = function (Set2) {
+        var _this = this;
+        return Set2.every(function (value) { return _this.collection.includes(value); });
+    };
+    MySet.prototype.difference = function (Set2) {
+        throw new Error("Method not implemented.");
+    };
     MySet.prototype.values = function () {
         return this.collection;
     };
@@ -67,3 +74,14 @@ console.log("set 2 => ", setToMerge);
 var mergedSet = aNewSet.merge(setToMerge);
 console.log("merged set => ", mergedSet);
 console.log("\nIntercetion of the sets => ", aNewSet.intersection(setToMerge));
+// subset test
+var mother = new MySet();
+mother.add(1);
+mother.add(2);
+mother.add(3);
+mother.add(4);
+console.log("mother is => ", mother);
+var child = new MySet();
+child.add(2);
+child.add(3);
+console.log("is child subset of mother", mother.subset(child.values()));

@@ -4,8 +4,10 @@ interface MySetMethods {
   has(value: any): boolean;
   add(value: any): void;
   remove(value: any): void;
-  merge(Set2: Array<any>): any[];
-  intersection(Set2: Array<any>): Array<any>;
+  merge(Set2: MySetMethods): MySetMethods;
+  intersection(Set2: MySetMethods): MySetMethods;
+  subset(Set2: MySetMethods): boolean;
+  difference(Set2: MySetMethods): MySetMethods;
 }
 
 class MySet implements MySetMethods {
@@ -13,6 +15,7 @@ class MySet implements MySetMethods {
   constructor() {
     this.collection = [];
   }
+
   values(): any[] {
     return this.collection;
   }
@@ -33,30 +36,50 @@ class MySet implements MySetMethods {
       this.collection.splice(valuePosition, 1);
     }
   }
-  merge(Set2: any[]): any[] {
+  merge(Set2: MySetMethods): MySetMethods {
     let mergedSet = new MySet();
     const set1 = this.values();
     for (let i = 0; i < set1.length; i++) {
       const element = set1[i];
       mergedSet.add(element);
     }
-    for (let i = 0; i < Set2.length; i++) {
-      const element = Set2[i];
+    for (let i = 0; i < Set2.size(); i++) {
+      const element = Set2.values()[i];
       mergedSet.add(element);
     }
 
-    return mergedSet.values();
+    return mergedSet;
   }
 
-  intersection(Set2: any[]): any[] {
+  intersection(Set2: MySetMethods): MySetMethods {
     const intersectionSet = new MySet();
-    for (let i = 0; i < Set2.length; i++) {
-      const element = Set2[i];
+    for (let i = 0; i < Set2.size(); i++) {
+      const element = Set2.values()[i];
       if (this.has(element)) {
         intersectionSet.add(element);
       }
     }
-    return intersectionSet.values();
+    return intersectionSet;
+  }
+  subset(Set2: MySetMethods): boolean {
+    return Set2.values().every((value) => this.collection.includes(value));
+  }
+  difference(Set2: MySetMethods): MySetMethods {
+    const diffSet = new MySet();
+    const Set1 = this.values();
+    for (let i = 0; i < this.size(); i++) {
+      const element = this.values()[i];
+      if (!Set2.has(element)) {
+        diffSet.add(element);
+      }
+    }
+    for (let i = 0; i < Set2.size(); i++) {
+      const element = Set2.values()[i];
+      if (!this.has(element)) {
+        diffSet.add(element);
+      }
+    }
+    return diffSet;
   }
 }
 
@@ -69,16 +92,28 @@ aNewSet.add(3);
 console.log(aNewSet.values());
 console.log("size is ", aNewSet.size());
 aNewSet.add("ToRemove");
-console.log("value to remove is last", aNewSet.values());
+console.log("\nvalue to remove is last", aNewSet.values());
 aNewSet.remove("ToRemove");
 console.log(aNewSet.values());
-console.log("does 3 exist? => ", aNewSet.has(3));
-console.log("does 3 ToRemove? => ", aNewSet.has("ToRemove"));
+console.log("\ndoes 3 exist in the first set? => ", aNewSet.has(3));
+console.log("\ndoes ToRemove exist? => ", aNewSet.has("ToRemove"));
 
 console.log("\nset 1 => ", aNewSet.values());
-const setToMerge = [3, "Daniel", 5, 6, "like"];
-console.log("set 2 => ", setToMerge);
+const setToMerge = new MySet();
+setToMerge.add(3);
+setToMerge.add("Daniel");
+setToMerge.add(5);
+setToMerge.add(6);
+setToMerge.add("like");
+console.log("\nset 2 => ", setToMerge.values());
 const mergedSet = aNewSet.merge(setToMerge);
-console.log("merged set => ", mergedSet);
+console.log("\nmerged set => ", mergedSet.values());
 
-console.log("\nIntercetion of the sets => ", aNewSet.intersection(setToMerge));
+console.log(
+  "\nIntercetion of the sets => ",
+  aNewSet.intersection(setToMerge).values()
+);
+
+console.log("\nDifference => ", aNewSet.difference(setToMerge).values());
+
+console.log("\nIs arg a subSet? => ", aNewSet.subset(setToMerge));
