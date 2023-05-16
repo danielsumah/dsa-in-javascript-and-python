@@ -1,6 +1,6 @@
 interface PriorityQueueValueI<T> {
-  0: T;
-  1: number;
+  value: T;
+  priority: number;
 }
 interface PriorityQueueInterface {
   print(): void;
@@ -24,20 +24,17 @@ class PriorityQueue implements PriorityQueueInterface {
       this.collection.push(valueToEnter);
       return;
     }
-    // this.collection.forEach((valueInCollection) => {});
+    // let isValueAdded
     for (
       let indexPositionInCollection = 0;
-      indexPositionInCollection < this.collection.length;
+      indexPositionInCollection < this.size();
       indexPositionInCollection++
     ) {
-      const element = this.collection[indexPositionInCollection];
-
-      if (valueToEnter[1] > element[1]) {
-        this.collection.splice(indexPositionInCollection + 1, 0, valueToEnter);
-      } else {
+      const elementInCollection = this.collection[indexPositionInCollection];
+      if (valueToEnter.priority > elementInCollection.priority) {
         this.collection.splice(indexPositionInCollection, 0, valueToEnter);
+        break;
       }
-      console.log(this.collection);
     }
   }
   dequeue(): void {
@@ -60,22 +57,37 @@ myPriorityQueue.print();
 
 console.log("\n");
 
+myPriorityQueue.enqueue({ value: "Man 1", priority: 1 });
+myPriorityQueue.enqueue({ value: "Man 6", priority: 6 });
+myPriorityQueue.enqueue({ value: "Man 2", priority: 2 });
+myPriorityQueue.enqueue({ value: "Man 2B", priority: 2 });
+myPriorityQueue.enqueue({ value: "Man 4", priority: 4 });
 console.log("Updated state of queue");
-myPriorityQueue.enqueue(["Man 1", 1]);
-myPriorityQueue.enqueue(["Man 3", 3]);
-myPriorityQueue.enqueue(["Man 2", 2]);
-myPriorityQueue.enqueue(["Man 2B", 2]);
 myPriorityQueue.print();
 
 console.log("\n");
 
 console.log("Who is at the front ? =>", myPriorityQueue.front());
 
+console.log("carry out a dequeue");
+myPriorityQueue.dequeue();
+console.log("Updated state of queue");
+myPriorityQueue.print();
+
+console.log("\nThe size of the ueue is now =>", myPriorityQueue.size());
+console.log("\nis queue empty =>", myPriorityQueue.isEmpty());
+
+console.log("dequeue 4 times");
+myPriorityQueue.dequeue();
+myPriorityQueue.dequeue();
+myPriorityQueue.dequeue();
+myPriorityQueue.dequeue();
+console.log("\nThe size of the ueue is now =>", myPriorityQueue.size());
+console.log("\nis queue empty =>", myPriorityQueue.isEmpty());
 // console.log("\nUpdated state of queue");
 // console.log("\n Value in front is => ", myQueue.front());
 // myQueue.print();
 
-// myQueue.dequeue();
 // console.log("\nAfter first dequeue");
 // myQueue.print();
 
