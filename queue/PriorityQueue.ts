@@ -82,24 +82,5 @@ myPriorityQueue.dequeue();
 myPriorityQueue.dequeue();
 myPriorityQueue.dequeue();
 myPriorityQueue.dequeue();
-console.log("\nThe size of the ueue is now =>", myPriorityQueue.size());
+console.log("\nThe size of the queue is now =>", myPriorityQueue.size());
 console.log("\nis queue empty =>", myPriorityQueue.isEmpty());
-// console.log("\nUpdated state of queue");
-// console.log("\n Value in front is => ", myQueue.front());
-// myQueue.print();
-
-// console.log("\nAfter first dequeue");
-// myQueue.print();
-
-// console.log("\nQueue size is => ", myQueue.size());
-
-// console.log("\n Value in front is => ", myQueue.front());
-
-// console.log("\n Is queue empty", myQueue.isEmpty());
-// myQueue.print();
-
-// myQueue.dequeue();
-// myQueue.dequeue();
-
-// console.log("\n Is queue empty", myQueue.isEmpty());
-// myQueue.print();
